@@ -5,7 +5,7 @@ use std::io::{BufRead, BufReader};
 
 use crate::collision::components::TargetPosition;
 use crate::{TILE_SIZE, TILE_SCALE};
-use super::components::Solid;
+use super::components::{Tile, Solid};
 use super::resources::Level;
 
 const ROOT_TEXT_PATH: &str = "assets/text_tilemaps/";
@@ -47,6 +47,13 @@ pub fn spawn_level(mut commands: &mut Commands, asset_server: &Res<AssetServer>,
 }
 
 
+pub fn despawn_level(mut commands: &mut Commands, tile_query: Query<Entity, With<Tile>>) {
+    for tile_entity in tile_query.iter() {
+        commands.entity(tile_entity).despawn();
+    }
+}
+
+
 // Spawns a tile with colliders
 pub fn spawn_solid_tile(commands: &mut Commands, texture: Handle<Image>, layout: Handle<TextureAtlasLayout>, index: usize, pos: Vec2) {
     commands.spawn(
@@ -66,7 +73,8 @@ pub fn spawn_solid_tile(commands: &mut Commands, texture: Handle<Image>, layout:
         TargetPosition {
             target: IVec2::new((pos.x * TILE_SIZE * TILE_SCALE) as i32, (pos.y * TILE_SIZE * TILE_SCALE) as i32)
         },
-        Solid {}
+        Solid {},
+        Tile {}
     ));
 }
 

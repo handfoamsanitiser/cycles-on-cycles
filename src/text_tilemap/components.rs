@@ -2,6 +2,10 @@ use bevy::prelude::*;
 
 
 #[derive(Component)]
+pub struct Tile {}
+
+
+#[derive(Component)]
 pub struct Solid {}
 
 

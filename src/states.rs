@@ -23,6 +23,7 @@ pub enum GameState {
     #[default]
     MAIN_MENU,
     GAME,
+    TRANSITION,
     END
 }
 
