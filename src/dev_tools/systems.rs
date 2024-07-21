@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::states::{GameState, LevelState};
+use crate::states::GameState;
 
 
 pub fn to_game(
@@ -27,5 +27,7 @@ pub fn to_main_menu(
     keyboard_input: Res<ButtonInput<KeyCode>>,
     mut next_game_state: ResMut<NextState<GameState>>
 ) {
-    next_game_state.set(GameState::MAIN_MENU);
+    if keyboard_input.just_pressed(KeyCode::KeyM) {
+        next_game_state.set(GameState::MAIN_MENU);
+    }
 }
