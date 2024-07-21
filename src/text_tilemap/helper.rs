@@ -26,7 +26,6 @@ pub fn load_collider_file(path: &str, width: usize, height: usize) -> Option<Lev
         }
     }
 
-    level.print_level();
     Some(level)
 }
 
