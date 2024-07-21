@@ -22,6 +22,7 @@ pub const TILE_SCALE: f32 = 4.0;
 
 fn main() {
     App::new()
+        .insert_resource(ClearColor(Color::Srgba(Srgba::new(0.60784, 0.73725, 0.05882, 0.0))))
         .add_plugins(DefaultPlugins.set(AssetPlugin {
 
             meta_check: AssetMetaCheck::Never,
