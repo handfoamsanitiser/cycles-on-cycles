@@ -5,6 +5,7 @@ use bevy::asset::AssetMetaCheck;
 use bevy::window::WindowResolution;
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 
+mod dev_tools;
 mod states;
 mod player;
 mod collision;

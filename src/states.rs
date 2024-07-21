@@ -17,3 +17,12 @@ pub enum LevelState {
     LOSE
 }
 
+
+#[derive(States, Default, Debug, Clone, PartialEq, Eq, Hash)]
+pub enum GameState {
+    #[default]
+    MAIN_MENU,
+    GAME,
+    END
+}
+
