@@ -8,10 +8,12 @@ use bevy_inspector_egui::quick::WorldInspectorPlugin;
 mod dev_tools;
 mod states;
 mod player;
+mod animation;
 mod collision;
 mod text_tilemap;
 
 
+use animation::MySpriteAnimationPlugin;
 use player::PlayerPlugin;
 use text_tilemap::helper::{load_collider_file, spawn_level};
 use text_tilemap::resources::LevelManager;
@@ -29,7 +31,7 @@ fn main() {
             ..default()
         }).set(WindowPlugin {
             primary_window: Some(Window {
-                resolution: WindowResolution::new(1000.0, 1000.0).with_scale_factor_override(1.0),
+                resolution: WindowResolution::new(1024.0, 1024.0).with_scale_factor_override(1.0),
                 ..default()
             }),
             ..default()
@@ -38,6 +40,7 @@ fn main() {
 
         .init_resource::<LevelManager>()
 
+        .add_plugins(MySpriteAnimationPlugin)
         .add_plugins(PlayerPlugin)
 
         .add_systems(Startup, setup)
@@ -49,7 +52,10 @@ fn main() {
 fn setup(
     mut commands: Commands, 
 ) {
-    commands.spawn(Camera2dBundle::default());
+    commands.spawn(Camera2dBundle {
+        transform: Transform::from_xyz(TILE_SIZE * TILE_SCALE / 2.0, TILE_SIZE * TILE_SCALE / 2.0, 5.0),
+        ..default()
+    });
 }
 
 fn load_test_level(
